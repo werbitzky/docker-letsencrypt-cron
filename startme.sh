@@ -4,8 +4,7 @@ set -e
 OVERRIDE=${OVERRIDE:-}
 SKIP_REFRESH=${SKIP_REFRESH:-}
 ARGS=${ARGS:-}
-
-DOMAIN=`expr "$ARGS" : '.*\-d \([A-Za-z0-9\.\-\_]*\)'`
+CERT_NAME=${CERT_NAME:-}
 
 if [ -z "${OVERRIDE}" ]
 then
@@ -15,7 +14,7 @@ then
 	then
 		wget -qO- https://codeload.github.com/kuba/simp_le/tar.gz/master | tar xz -C /
 	fi
-	/simp_le-master/simp_le.py --default_root /var/www/html ${ARGS} && mv full.pem /certs/${DOMAIN}_full.pem
+	/simp_le-master/simp_le.py --default_root /var/www/html ${ARGS} && mv full.pem /certs/${CERT_NAME}_full.pem
 else
 	"$@"
 fi

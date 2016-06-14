@@ -5,19 +5,7 @@ OVERRIDE=${OVERRIDE:-}
 SKIP_REFRESH=${SKIP_REFRESH:-}
 ARGS=${ARGS:-}
 
-while [ "$1" != "" ]; do
-	PARAM=`echo $1 | awk -F= '{print $1}'`
-	VALUE=`echo $1 | awk -F= '{print $2}'`
-	case $PARAM in
-    -d)
-      DOMAIN=$VALUE
-      exit
-      ;;
-    *)
-      ;;
-	esac
-	shift
-done
+DOMAIN=`expr "$ARGS" : '.*\-d \([A-Za-z0-9\.\-\_]*\)'`
 
 if [ -z "${OVERRIDE}" ]
 then

@@ -21,5 +21,6 @@ WORKDIR /certs_gen
 COPY ["./startme.sh", "/usr/local/bin/"]
 COPY root /var/spool/cron/crontabs/root
 
+VOLUME ["/certs_gen", "/certs"]
 EXPOSE 80
 CMD /usr/local/bin/startme.sh && crond -l 2 -f

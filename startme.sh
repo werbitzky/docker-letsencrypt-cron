@@ -9,14 +9,14 @@ CERT_NAME=${CERT_NAME:-}
 if [ -z "${OVERRIDE}" ]
 then
 	mkdir -p /var/www/html
-	kill $(pgrep darkhttpd) || true
+	killall darkhttpd || true
 	darkhttpd /var/www/html --port 80 --daemon
 	if [ -z "${SKIP_REFRESH}" ]
 	then
 		wget -qO- https://codeload.github.com/kuba/simp_le/tar.gz/master | tar xz -C /
 	fi
 	/simp_le-master/simp_le.py --default_root /var/www/html ${ARGS} && cp full.pem /certs/${CERT_NAME}_full.pem
-	kill $(pgrep darkhttpd) || true
+ 	killall darkhttpd || true
 else
 	"$@"
 fi

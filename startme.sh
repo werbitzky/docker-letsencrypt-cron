@@ -14,7 +14,7 @@ then
 	then
 		wget -qO- https://codeload.github.com/kuba/simp_le/tar.gz/master | tar xz -C /
 	fi
-	/simp_le-master/simp_le.py --default_root /var/www/html ${ARGS} && mv full.pem /certs/${CERT_NAME}_full.pem
+	/simp_le-master/simp_le.py --default_root /var/www/html ${ARGS} && cp full.pem /certs/${CERT_NAME}_full.pem
 else
 	"$@"
 fi
